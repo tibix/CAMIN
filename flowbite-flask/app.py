@@ -1,5 +1,6 @@
 import datetime
-from flask import Flask, render_template
+import re
+from flask import Flask, render_template, request
 from peewee import MySQLDatabase, Model, CharField, TextField, BooleanField, DateTimeField, IntegerField, OperationalError
 
 right_now = datetime.datetime.now()
@@ -29,11 +30,28 @@ def index():
     camine = Camin.select()
     return render_template("index.html", camine=camine)
 
-@app.route("/add")
+@app.route('/add', methods=['GET', 'POST'])
 def add():
-    camine = Camin.select()
-    return render_template("add.html", camine=camine)
+    if request.method == "POST":
+        print("post data:")
+        # nume = request.form['nume']
+        # adresa = request.form['adresa']
+        # site = request.form['site']
+        # telefon = request.form['telefon']
+        # pret = request.form['pret']
+        # verificat = request.form['verificat']
+        # note = request.form['note']
 
+        # print(f'Nume: {nume}\nAdresa: {adresa}\nSite: {site}\nTelefon: {telefon}\nPret: {pret}\nNote: {note}\n')
+        print(request.form.getlist('verificat'))
+    return render_template("index.html")
+
+@app.route('/update/<id>', methods=['GET', 'POST'])
+def update(id):
+    camin = Camin.select().where(Camin.id == id).get()
+    if request.method == "POST":
+        pass
+    return render_template("update.html", camin=camin)
 
 if __name__ == "__main__":
     app.run(debug=True)
