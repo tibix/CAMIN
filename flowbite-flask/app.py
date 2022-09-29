@@ -2,6 +2,7 @@ import datetime
 import re
 from flask import Flask, render_template, request
 from peewee import MySQLDatabase, Model, CharField, TextField, BooleanField, DateTimeField, IntegerField, OperationalError
+from forms import AdaugaForm, ModificaForm
 
 right_now = datetime.datetime.now()
 
@@ -24,6 +25,8 @@ class Camin(BaseModel):
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = 'fa11dd842bf8374664a9e72fb4eecabe26b3416a21910dffa4'
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -32,6 +35,7 @@ def index():
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
+    form = AdaugaForm()
     if request.method == "POST":
         print("post data:")
         # nume = request.form['nume']
@@ -44,14 +48,16 @@ def add():
 
         # print(f'Nume: {nume}\nAdresa: {adresa}\nSite: {site}\nTelefon: {telefon}\nPret: {pret}\nNote: {note}\n')
         print(request.form.getlist('verificat'))
-    return render_template("index.html")
+    return render_template("index.html", form=form)
 
 @app.route('/update/<id>', methods=['GET', 'POST'])
 def update(id):
+    form = ModificaForm()
+    camine = Camin.select()
     camin = Camin.select().where(Camin.id == id).get()
     if request.method == "POST":
         pass
-    return render_template("update.html", camin=camin)
+    return render_template("update.html", camin=camin, camine=camine, form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
