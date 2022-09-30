@@ -6,7 +6,7 @@ from forms import AdaugaForm, ModificaForm
 
 right_now = datetime.datetime.now()
 
-mysql_db = MySQLDatabase('camine', user='root', password='', host='127.0.0.1', port=3306, charset='utf8mb4')
+mysql_db = MySQLDatabase('camine', user='root', password='AnaFilipDelia2022!', host='127.0.0.1', port=3306, charset='utf8mb4')
 
 class BaseModel(Model):
     class Meta:
@@ -48,7 +48,7 @@ def add():
 
         # print(f'Nume: {nume}\nAdresa: {adresa}\nSite: {site}\nTelefon: {telefon}\nPret: {pret}\nNote: {note}\n')
         print(request.form.getlist('verificat'))
-    return render_template("index.html", form=form)
+    return render_template("add.html", form=form)
 
 @app.route('/update/<id>', methods=['GET', 'POST'])
 def update(id):

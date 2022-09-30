@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="row g-3">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Nume</label>
+      <input type="email" class="form-control" id="inputEmail4">
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Site</label>
+      <input type="password" class="form-control" id="inputPassword4">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Adresa</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">Telefon</label>
+      <input type="text" class="form-control input-group-lg" id="inputCity">
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">Pret</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
+      </select>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Observatii</label>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input ms-auto" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="transform: scale(1.8);">
+        <label class="form-check-label ms-5" for="flexSwitchCheckDefault" style="transform: scale(1.8);">Verificat</label>
+      </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <br>
-<table class="table table-dark table-striped table-hover rounded">
-    <thead>
+<table class="table table-hover">
+    <thead class="bg-dark text-white-50">
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Nume</th>
@@ -44,13 +44,10 @@
             </td>
             <td>
                 {% if camin.verificat %}
-                <div class="flex items-center">
-                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                </div>
+                    <span class="border border-success rounded-circle bg-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 {% else %}
-                <div class="flex items-center">
-                    <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
-                </div>
+                    <span class="border border-danger rounded-circle bg-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </span>
                 {% endif %}
             </td>
             <td>
@@ -58,7 +55,7 @@
             </td>
             <td>
                 <!-- Modal toggle -->
-                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="text-info">Editeaza</a>
+                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-outline-secondary">Editeaza</a>
             </td>
         </tr>
         {% endfor %}
