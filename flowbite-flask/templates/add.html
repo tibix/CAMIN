@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-<form class="row g-3">
+{# <form class="row g-3" action="" method="POST">
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Nume</label>
+      <label for="inputEmail4" class="form-label">Nume Camin</label>
       <input type="email" class="form-control" id="inputEmail4">
     </div>
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Site</label>
+      <label for="inputPassword4" class="form-label">Telefon</label>
       <input type="password" class="form-control" id="inputPassword4">
     </div>
     <div class="col-12">
@@ -14,26 +14,118 @@
       <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
     </div>
     <div class="col-md-6">
-      <label for="inputCity" class="form-label">Telefon</label>
+      <label for="inputCity" class="form-label">Site</label>
       <input type="text" class="form-control input-group-lg" id="inputCity">
     </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">Pret</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
+    <div class="col-md-3">
+      <label for="inputCity" class="form-label">Pret</label>
+      <input type="text" class="form-control input-group-lg" id="inputCity">
+    </div>
+    <div class="form-check form-switch col-md-3">
+      <label for="flexSwitchCheckDefault" class="form-label">Camin Verificat</label>
+      <input class="form-check-input" type="checkbox" role="switch" id="verificat">
     </div>
     <div class="form-floating">
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
         <label for="floatingTextarea2">Observatii</label>
       </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input ms-auto" type="checkbox" role="switch" id="flexSwitchCheckDefault" style="transform: scale(1.8);">
-        <label class="form-check-label ms-5" for="flexSwitchCheckDefault" style="transform: scale(1.8);">Verificat</label>
-      </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
+</form> #}
+<div class="content-section">
+<form method="post" action="">
+  {{ form.hidden_tag() }}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Adauga un camin nou</legend>
+    <div class="form-group">
+      {{ form.nume.label(class="form-control-label") }}
+
+      {% if form.nume.errors %}
+        {{ form.nume(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.nume.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.nume(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.telefon.label(class="form-control-label") }}
+      {% if form.telefon.errors %}
+        {{ form.telefon(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.telefon.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.telefon(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.adresa.label(class="form-control-label") }}
+      {% if form.adresa.errors %}
+        {{ form.adresa(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.adresa.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.adresa(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.site.label(class="form-control-label") }}
+      {% if form.site.errors %}
+        {{ form.site(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.site.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.site(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.pret.label(class="form-control-label") }}
+      {% if form.pret.errors %}
+        {{ form.pret(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.pret.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.pret(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.note.label(class="form-control-label") }}
+      {% if form.note.errors %}
+        {{ form.note(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.note.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+      {% else %}
+        {{ form.note(class="form-control form-control-lg") }}
+      {% endif %}
+    </div>
+    <div class="form-group">
+      {{ form.verificat.label(class="form-control-label custom-control-label") }}
+      {{ form.verificat(class="form-check-input m-1", type="checkbox") }}
+    </div>
+  </fieldset>
+  <br>
+  <div class="form-group">
+    {{ form.salveaza(class="btn btn-outline-info") }}
+  </div>
 </form>
+</div>
 {% endblock %}
