@@ -1,64 +1,101 @@
 {% extends "base.html" %}
 {% block content %}
-<br>
-<table class="table table-hover">
-    <thead class="bg-dark text-white-50">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nume</th>
-        <th scope="col">Adresa</th>
-        <th scope="col">Site</th>
-        <th scope="col">Telefon</th>
-        <th scope="col">Pret</th>
-        <th scope="col">Note</th>
-        <th scope="col">Verificat</th>
-        <th scope="col">Adaugat</th>
-        <th scope="col">-------</th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for camin in camine %}
-        <tr>
-            <td>
-                {{ camin.id }}
-            </td>
-            <td>
-                {{ camin.nume }}
-            </td>
-            <td>
-                {{ camin.adresa }}
-            </td>
-            <td>
-                {{ camin.site }}
-            </td>
-            <td>
-                {% for tel in camin.telefon %}
-                    {{ tel }}
-                {% endfor %}
-            </td>
-            <td>
-                {{ camin.pret }}
-            </td>
-            <td>
-                {{ camin.note }}
-            </td>
-            <td>
-                {% if camin.verificat %}
-                    <span class="border border-success rounded-circle bg-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                {% else %}
-                    <span class="border border-danger rounded-circle bg-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                </span>
-                {% endif %}
-            </td>
-            <td>
-                {{ camin.adaugat }}
-            </td>
-            <td>
-                <!-- Modal toggle -->
-                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-outline-secondary">Editeaza</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-  </table>
+<form method="post" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Modifica datele pentru: "{{ camin.nume }}"</legend>
+      <div class="form-group">
+        {{ form.nume.label(class="form-control-label") }}
+  
+        {% if form.nume.errors %}
+          {{ form.nume(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.nume.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.nume(class="form-control form-control-lg", value=camin.nume) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.telefon.label(class="form-control-label") }}
+        {% if form.telefon.errors %}
+          {{ form.telefon(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.telefon.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.telefon(class="form-control form-control-lg",value=camin.telefon) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.adresa.label(class="form-control-label") }}
+        {% if form.adresa.errors %}
+          {{ form.adresa(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.adresa.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.adresa(class="form-control form-control-lg", value=camin.adresa) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.site.label(class="form-control-label") }}
+        {% if form.site.errors %}
+          {{ form.site(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.site.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.site(class="form-control form-control-lg", value=camin.site) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.pret.label(class="form-control-label") }}
+        {% if form.pret.errors %}
+          {{ form.pret(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.pret.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.pret(class="form-control form-control-lg", value=camin.pret) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.note.label(class="form-control-label") }}
+        {% if form.note.errors %}
+          {{ form.note(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+              {% for error in form.note.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+        {% else %}
+          {{ form.note(class="form-control form-control-lg", value=camin.note) }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.verificat.label(class="form-control-label custom-control-label") }}
+        {% if camin.verificat == 1 %}
+            {{ form.verificat(class="form-check-input m-1", type="checkbox", checked="checked") }}
+        {% else %}
+            {{ form.verificat(class="form-check-input m-1", type="checkbox") }}
+        {% endif %}
+      </div>
+    </fieldset>
+    <br>
+    <div class="form-group">
+      {{ form.salveaza(class="btn btn-outline-info") }}
+    </div>
+  </form>
+  </div>
 {% endblock %}

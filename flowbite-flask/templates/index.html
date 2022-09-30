@@ -13,7 +13,8 @@
         <th scope="col">Note</th>
         <th scope="col">Verificat</th>
         <th scope="col">Adaugat</th>
-        <th scope="col">-------</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -53,7 +54,10 @@
             </td>
             <td>
                 <!-- Modal toggle -->
-                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-outline-secondary">Editeaza</a>
+                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-outline-success">Editeaza</a>
+            </td>
+            <td>
+                <a href="{{ url_for('delete', id=camin.id) }}" type="button" class="btn btn-outline-danger">Sterge</a>
             </td>
         </tr>
         {% endfor %}
