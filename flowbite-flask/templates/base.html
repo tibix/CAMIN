@@ -9,10 +9,8 @@
     <meta name="generator" content="Hugo 0.101.0">
     <title>Camine</title>
     <script src="https://kit.fontawesome.com/6f78ace1ca.js" crossorigin="anonymous"></script>
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
     <link href="{{ url_for('static', filename='style/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='style/headers.css') }}" rel="stylesheet">
+    {% block customhead %}{% endblock %}
 </head>
 
 <body>
@@ -59,7 +57,6 @@
 
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
 </body>
 
 </html>

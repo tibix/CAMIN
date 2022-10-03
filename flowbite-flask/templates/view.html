@@ -1,23 +1,75 @@
 {% extends "base.html" %}
+{% block customhead %}
+{{ dropzone.load_css() }}
+{{ dropzone.style('border: 4px dashed #ffbb33; border-radius: 10px; margin: 20px; min-height: 100px;') }}
+{% endblock %}
 {% block content %}
 <h1 class="text-center text-bg-warning">{{ camin.nume }}</h1>
 
 <div class="card">
   <div class="card-header">
-    <span class="fw-bolder fs-3 text-dark">Detalii</span>
+    <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="active btn btn-outline-warning text-dark me-2" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#telefon" type="button" role="tab" aria-controls="telefon" aria-selected="true">Telefon <span class="fa fa-phone"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#site" type="button" role="tab" aria-controls="site" aria-selected="false">Site <span class="fa fa-earth-europe"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#adresa" type="button" role="tab" aria-controls="adresa" aria-selected="false">Adresa <span class="fa fa-map-location-dot"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pret" type="button" role="tab" aria-controls="pret" aria-selected="false">Pret <span class="fa fa-coins"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#note" type="button" role="tab" aria-controls="note" aria-selected="false">Note <span class="fa fa-clipboard"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#poze" type="button" role="tab" aria-controls="poze" aria-selected="false">Poze <span class="fa fa-photo"></span></button>
+      </li>
+    </ul>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Telefon</h5>
-    <p class="card-text">{{ camin.telefon }}</p>
-    <ul>
-      <li><span class="fw-bold">Telefon:</span> {{ camin.telefon }}</li>
-      <li><span class="fw-bold">Site:</span> <a href="{{ camin.site }}" class="text-dark">{{ camin.site }}</a></li>
-      <li><span class="fw-bold">Adresa:</span> {{ camin.adresa }}</li>
-      <li><span class="fw-bold">Pret:</span> {{ camin.pret }} RON</li>
-      <li><span class="fw-bold">Note:</span> {{ camin.note }}</li>
-    </ul>
-    <a href="#" class="btn btn-warning">Go somewhere</a>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="telefon" role="tabpanel" aria-labelledby="pills-home-tab">
+        {{ camin.telefon }}
+      </div>
+      <div class="tab-pane fade" id="site" role="tabpanel" aria-labelledby="pills-home-tab">
+        <a href="{{ camin.site }}" class="text-dark">{{ camin.site }}</a>
+      </div>
+      <div class="tab-pane fade" id="adresa" role="tabpanel" aria-labelledby="pills-home-tab">
+        {{ camin.adresa }}
+      </div>
+      <div class="tab-pane fade" id="pret" role="tabpanel" aria-labelledby="pills-profile-tab">
+        {{ camin.pret }} RON
+      </div>
+      <div class="tab-pane fade" id="note" role="tabpanel" aria-labelledby="pills-contact-tab">
+        {{ camin.note }}
+      </div>
+      <div class="tab-pane fade" id="poze" role="tabpanel" aria-labelledby="pills-contact-tab">
+        {{ camin.poze }}
+      </div>
+    </div>
   </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header bg-warning">
+    <span class="text-center text-dark fs-5 fw-bolder">Adauga poze pentru caminul {{ camin.nume }}</span>
+  </div>
+  <div class="card-body">
+    {# <div class="dropzone">
+      <div class="dz-message needclick">
+        <h1>Drop files here to upload</h1>
+      </div>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" />
+    </form>
+  </div> #}
+    {{ dropzone.create(action='upload') }}
+    {{ dropzone.load_js() }}
+    {{ dropzone.config() }}
 </div>
 
 {% endblock %}
