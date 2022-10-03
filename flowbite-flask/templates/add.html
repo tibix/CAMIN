@@ -1,38 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-{# <form class="row g-3" action="" method="POST">
-    <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Nume Camin</label>
-      <input type="email" class="form-control" id="inputEmail4">
-    </div>
-    <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Telefon</label>
-      <input type="password" class="form-control" id="inputPassword4">
-    </div>
-    <div class="col-12">
-      <label for="inputAddress" class="form-label">Adresa</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="col-md-6">
-      <label for="inputCity" class="form-label">Site</label>
-      <input type="text" class="form-control input-group-lg" id="inputCity">
-    </div>
-    <div class="col-md-3">
-      <label for="inputCity" class="form-label">Pret</label>
-      <input type="text" class="form-control input-group-lg" id="inputCity">
-    </div>
-    <div class="form-check form-switch col-md-3">
-      <label for="flexSwitchCheckDefault" class="form-label">Camin Verificat</label>
-      <input class="form-check-input" type="checkbox" role="switch" id="verificat">
-    </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Observatii</label>
-      </div>
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
-    </div>
-</form> #}
 <div class="content-section">
 <form method="post" action="">
   {{ form.hidden_tag() }}
@@ -124,7 +91,7 @@
   </fieldset>
   <br>
   <div class="form-group">
-    {{ form.salveaza(class="btn btn-outline-info") }}
+    {{ form.salveaza(class="btn btn-warning") }}
   </div>
 </form>
 </div>

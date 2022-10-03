@@ -67,8 +67,12 @@ def update(id):
         camin.save()
         flash(f'Camin "{form.nume.data}" modificat cu success', 'success')
         return redirect(url_for('index'))
+    return render_template('update.html', camin=camin, form=form)
 
-    return render_template("update.html", camin=camin, form=form)
+@app.route('/view/<id>', methods=['GET', 'POST'])
+def view(id):
+    camin = Camin.select().where(Camin.id == id).get()
+    return render_template("view.html", camin=camin)
 
 @app.route('/delete/<id>', methods=['GET', 'POST'])
 def delete(id):

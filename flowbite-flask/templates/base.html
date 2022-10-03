@@ -8,6 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.101.0">
     <title>Camine</title>
+    <script src="https://kit.fontawesome.com/6f78ace1ca.js" crossorigin="anonymous"></script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
     <link href="{{ url_for('static', filename='style/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -20,15 +21,12 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                            <use xlink:href="#bootstrap" />
-                        </svg>
+                       <span><i class="fa-solid fa-house-chimney-user fa-inverse fa-2x text-warning"></i></span>
                     </a>
-
+                    <i class="fa-duotone fa-house-chimney-heart"></i>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{{ url_for('index') }}" class="nav-link px-2 text-white">Camine</a></li>
                         <li><a href="{{ url_for('add') }}" class="nav-link px-2 text-white">Adauga</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Modifica</a></li>
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -60,6 +58,8 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </body>
 
 </html>

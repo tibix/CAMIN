@@ -4,15 +4,15 @@
 <table class="table  table-hover">
     <thead class="bg-dark text-white-50">
       <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nume</th>
-        <th scope="col">Adresa</th>
-        <th scope="col">Site</th>
-        <th scope="col">Telefon</th>
-        <th scope="col">Pret</th>
-        <th scope="col">Note</th>
-        <th scope="col">Verificat</th>
-        <th scope="col">Adaugat</th>
+        <th scope="col" class="text-warning">ID</th>
+        <th scope="col" class="text-warning">Nume</th>
+        <th scope="col" class="text-warning">Adresa</th>
+        <th scope="col" class="text-warning">Site</th>
+        <th scope="col" class="text-warning">Telefon</th>
+        <th scope="col" class="text-warning">Pret</th>
+        <th scope="col" class="text-warning">Note</th>
+        <th scope="col" class="text-warning">Verificat</th>
+        <th scope="col" class="text-warning">Adaugat</th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>
@@ -21,16 +21,16 @@
         {% for camin in camine %}
         <tr>
             <td>
-                {{ camin.id }}
+                </i> {{ camin.id }}
             </td>
             <td>
-                {{ camin.nume }}
+                <a href="{{ url_for('view', id=camin.id) }}" class="text-dark"><i class="fa-solid fa-house-chimney-user"></i> {{ camin.nume }}</a>
             </td>
             <td>
                 {{ camin.adresa }}
             </td>
             <td>
-                {{ camin.site }}
+                <a href="{{ camin.site }}" class="link-dark">{{ camin.site }}</a>
             </td>
             <td>
                 {{ camin.telefon }}
@@ -43,9 +43,9 @@
             </td>
             <td>
                 {% if camin.verificat %}
-                    <span class="border border-success rounded-circle bg-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span><i class="fa-regular fa-circle-check  text-warning"></i></span>
                 {% else %}
-                    <span class="border border-danger rounded-circle bg-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span><i class="fa-regular fa-circle-xmark text-danger"></i></span>
                 </span>
                 {% endif %}
             </td>
@@ -54,7 +54,7 @@
             </td>
             <td>
                 <!-- Modal toggle -->
-                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-outline-success">Editeaza</a>
+                <a href="{{ url_for('update', id=camin.id) }}" type="button" class="btn btn-warning">Editeaza</a>
             </td>
             <td>
                 <a href="{{ url_for('delete', id=camin.id) }}" type="button" class="btn btn-outline-danger">Sterge</a>
