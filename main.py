@@ -2,7 +2,7 @@ import sys
 import subprocess
 import datetime
 import json
-from peewee import MySQLDatabase, Model, CharField, TextField, BooleanField, DateTimeField, IntegerField, OperationalError
+from peewee import MySQLDatabase, Model, CharField, TextField, BooleanField, DateTimeField, IntegerField, OperationalError, ForeignKeyField
 
 
 right_now = datetime.datetime.now()
@@ -32,6 +32,10 @@ class Camin(BaseModel):
     verificat = BooleanField(null=False, default=False, index=True)
     adaugat = DateTimeField()
 
+class Poze(BaseModel):
+    path = TextField();
+    adaugat = DateTimeField(default=right_now)
+    camin = ForeignKeyField(Camin, backref='poze')
 
 def convertJSONtolist(json_file):
     camine = []
@@ -56,11 +60,14 @@ def convertJSONtolist(json_file):
 if __name__ == "__main__":
     try:
         Camin.create_table()
-        camine = convertJSONtolist('camine.json')
-        Camin.insert_many(camine).execute()
-        print("Table populated")
-        camine = Camin.select()
-        for camin in camine:
-            print(camin.site)
+        print("Table created")
+        Poze.create_table()
+        print("Table created")
+        # camine = convertJSONtolist('camine.json')
+        # Camin.insert_many(camine).execute()
+        # print("Table populated")
+        # camine = Camin.select()
+        # for camin in camine:
+        #     print(camin.site)
     except OperationalError:
         print("Table already exists")
