@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center text-bg-warning">{{ camin.nume }}</h1>
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills mb-1" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="active btn btn-outline-warning text-dark me-2" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#telefon" type="button" role="tab" aria-controls="telefon" aria-selected="true">Telefon <span class="fa fa-phone"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#site" type="button" role="tab" aria-controls="site" aria-selected="false">Site <span class="fa fa-earth-europe"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#adresa" type="button" role="tab" aria-controls="adresa" aria-selected="false">Adresa <span class="fa fa-map-location-dot"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pret" type="button" role="tab" aria-controls="pret" aria-selected="false">Pret <span class="fa fa-coins"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#note" type="button" role="tab" aria-controls="note" aria-selected="false">Note <span class="fa fa-clipboard"></span></button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="btn btn-outline-warning text-dark me-2" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#poze" type="button" role="tab" aria-controls="poze" aria-selected="false">Poze <span class="fa fa-photo"></span></button>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="telefon" role="tabpanel" aria-labelledby="pills-home-tab">
+        {{ camin.telefon }}
+      </div>
+      <div class="tab-pane fade" id="site" role="tabpanel" aria-labelledby="pills-home-tab">
+        <a href="{{ camin.site }}" class="text-dark">{{ camin.site }}</a>
+      </div>
+      <div class="tab-pane fade" id="adresa" role="tabpanel" aria-labelledby="pills-home-tab">
+        {{ camin.adresa }}
+      </div>
+      <div class="tab-pane fade" id="pret" role="tabpanel" aria-labelledby="pills-profile-tab">
+        {{ camin.pret }} RON
+      </div>
+      <div class="tab-pane fade" id="note" role="tabpanel" aria-labelledby="pills-contact-tab">
+        {{ camin.note }}
+      </div>
+      <div class="tab-pane fade" id="poze" role="tabpanel" aria-labelledby="pills-contact-tab">
+        {# <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> #}
+        {# {% for poza in camin.poze %} #}
+          {# <div class="col"> #}
+            {# <div class="card shadow-sm"> #}
+              {# <img src="{{ poza.path }}" class="rounded mx-auto d-block card-img-top" width="100%" height="225" alt="{{ poza.path }}"> #}
+              {# <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> #}
+  
+              {# <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">9 mins</small>
+                </div>
+              </div>
+            </div>
+          </div> #}
+        {# {% endfor %} #}
+        {# </div> #}
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-inner">
+            {% for poza in camin.poze %}
+              <div class="carousel-item {% if loop.index == 1 %} active {% endif %}" id="slide{{ loop.index }}">
+                <img src="{{ poza.path }}" class="d-block mh-100"> 
+              </div>
+            {% endfor %}
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-header bg-warning">
+    <span class="text-center text-dark fs-5 fw-bolder">Adauga poze pentru caminul {{ camin.nume }}</span>
+  </div>
+  <div class="card-body">
+    <form enctype="multipart/form-data" method="post">
+    {{ form.hidden_tag() }}
+        {% if form.imagini.errors %}
+          {% for error in form.imagini.errors %}
+              <small class="text-danger">{{ error }}</small>
+          {% endfor %}
+          <div class="input-group">
+            {{ form.imagini(class="form-control is-invalid", type="file", id="inputGroupFile04", description="Apasati aici pentru a incarca imagini") }}
+            {{ form.incarca(class="btn btn-outline-warning", id="inputGroupFile04") }}
+          </div>
+        {% else %}
+        <div class="input-group">
+          {{ form.imagini(class="form-control", type="file", id="inputGroupFile04", description="Apasati aici pentru a incarca imagini") }}
+          {{ form.incarca(class="btn btn-outline-warning", id="inputGroupFile04") }}
+        </div>
+        {% endif %}
+    </form>
+  </div>
+</div>
+
+{% endblock %}
