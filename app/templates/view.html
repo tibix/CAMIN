@@ -68,7 +68,7 @@
           <div class="carousel-inner">
             {% for poza in camin.poze %}
               <div class="carousel-item {% if loop.index == 1 %} active {% endif %}" id="slide{{ loop.index }}">
-                <img src="{{ poza.path }}" class="d-block mh-100"> 
+                <img src="{{ poza.path }}" class="d-block w-100 mh-100"> 
               </div>
             {% endfor %}
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
