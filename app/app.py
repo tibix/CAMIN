@@ -20,6 +20,7 @@ app.config['SECRET_KEY'] = secrets.app_secret
 app.config['UPLOADED_PATH'] = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static/images')
 app.config['MAX_CONTENT_LENGTH'] = 10000 * 1024 * 1024
 
+
 @app.route("/")
 @app.route("/index")
 def index():
