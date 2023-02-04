@@ -32,7 +32,7 @@ def index():
 def add():
     form = AdaugaForm()
     if form.validate_on_submit():
-        camin = Camin.create(nume=form.nume.data, 
+        camin = Camin.create(nume=form.nume.data,
                              adresa=form.adresa.data,
                              site=form.site.data,
                              telefon=form.telefon.data,
@@ -52,14 +52,14 @@ def update(id):
     form = ModificaForm()
     camin = Camin.select().where(Camin.id == id).get()
     if form.validate_on_submit():
-        camin.nume=form.nume.data 
-        camin.adresa=form.adresa.data
-        camin.site=form.site.data
-        camin.telefon=form.telefon.data
-        camin.pret=form.pret.data
-        camin.note=form.note.data
-        camin.verificat=int(form.verificat.data)
-        camin.adaugat=datetime.datetime.now()
+        camin.nume = form.nume.data
+        camin.adresa = form.adresa.data
+        camin.site = form.site.data
+        camin.telefon = form.telefon.data
+        camin.pret = form.pret.data
+        camin.note = form.note.data
+        camin.verificat = int(form.verificat.data)
+        camin.adaugat = datetime.datetime.now()
         camin.save()
         flash(f'Camin "{form.nume.data}" modificat cu success', 'success')
         return redirect(url_for('index'))
@@ -80,10 +80,10 @@ def view(id):
             else:
                 save_path = os.path.join(app.config['UPLOADED_PATH'], str(camin.id))
                 i.save(os.path.join(save_path, imagine))
-            Poze.create(path="/static/images/"+str(camin.id)+"/"+imagine, adaugat=right_now, camin_id = camin.id  )
+            Poze.create(path="/static/images/"+str(camin.id)+"/"+imagine, adaugat=right_now, camin_id=camin.id)
             flash(f'Imaginea {imagine} incarcate cu success', 'success')
         else:
-            flash(f'A aparut eroare la incarcarea pozelor!', 'danger')
+            flash('A aparut eroare la incarcarea pozelor!', 'danger')
     return render_template("view.html", camin=camin, form=form)
 
 
